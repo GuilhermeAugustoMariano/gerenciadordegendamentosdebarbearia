@@ -24,6 +24,16 @@ H2 em memoria
 
 O H2 em memoria funciona como um banco temporario: ele nasce quando a aplicacao inicia e some quando a aplicacao para.
 
+Tabelas modeladas ate agora:
+
+```text
+customers     clientes
+barbers       barbeiros
+appointments  agendamentos
+```
+
+A tabela `appointments` se conecta com `customers` e `barbers`.
+
 Hoje ele tem uma rota de teste:
 
 ```text
@@ -74,3 +84,4 @@ http://localhost:8080/hello
 - Angular CLI instalado
 - H2 configurado para desenvolvimento
 - PostgreSQL adicionado para uso futuro
+- Primeiras tabelas modeladas com JPA
