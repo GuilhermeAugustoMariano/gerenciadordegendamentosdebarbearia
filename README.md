@@ -34,6 +34,12 @@ appointments  agendamentos
 
 A tabela `appointments` se conecta com `customers` e `barbers`.
 
+Primeira regra de negocio implementada:
+
+```text
+Um barbeiro nao pode ter dois agendamentos marcados para a mesma data e hora.
+```
+
 Hoje ele tem uma rota de teste:
 
 ```text
@@ -85,3 +91,4 @@ http://localhost:8080/hello
 - H2 configurado para desenvolvimento
 - PostgreSQL adicionado para uso futuro
 - Primeiras tabelas modeladas com JPA
+- Regra inicial de criacao de agendamento implementada
