@@ -16,6 +16,14 @@ gerenciadordegendamentosdebarbearia/
 
 O backend representa a parte do sistema que recebe pedidos, executa regras e devolve respostas.
 
+Banco de dados configurado para desenvolvimento:
+
+```text
+H2 em memoria
+```
+
+O H2 em memoria funciona como um banco temporario: ele nasce quando a aplicacao inicia e some quando a aplicacao para.
+
 Hoje ele tem uma rota de teste:
 
 ```text
@@ -64,3 +72,5 @@ http://localhost:8080/hello
 - Git iniciado
 - Primeiro endpoint de teste criado
 - Angular CLI instalado
+- H2 configurado para desenvolvimento
+- PostgreSQL adicionado para uso futuro
