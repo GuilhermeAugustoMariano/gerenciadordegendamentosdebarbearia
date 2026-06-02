@@ -52,6 +52,25 @@ Resposta esperada:
 API do Gerenciador de Agendamentos de Barbearia rodando!
 ```
 
+Endpoints principais ate agora:
+
+```text
+POST /customers
+POST /barbers
+POST /appointments
+```
+
+Exemplo de criacao de agendamento:
+
+```json
+{
+  "customerId": 1,
+  "barberId": 1,
+  "appointmentDate": "2026-06-05",
+  "appointmentTime": "14:00:00"
+}
+```
+
 ## Comandos principais
 
 Todos os comandos Maven devem ser executados na raiz do projeto.
@@ -92,3 +111,4 @@ http://localhost:8080/hello
 - PostgreSQL adicionado para uso futuro
 - Primeiras tabelas modeladas com JPA
 - Regra inicial de criacao de agendamento implementada
+- Endpoints iniciais de cliente, barbeiro e agendamento criados
