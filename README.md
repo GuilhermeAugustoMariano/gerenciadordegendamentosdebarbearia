@@ -58,6 +58,8 @@ Endpoints principais ate agora:
 POST /customers
 POST /barbers
 POST /appointments
+POST /barbers/{barberId}/availabilities
+GET /barbers/{barberId}/available-times?date=2026-06-05
 ```
 
 Exemplo de criacao de agendamento:
@@ -70,6 +72,18 @@ Exemplo de criacao de agendamento:
   "appointmentTime": "14:00:00"
 }
 ```
+
+Exemplo de cadastro de disponibilidade:
+
+```json
+{
+  "dayOfWeek": "FRIDAY",
+  "startTime": "09:00:00",
+  "endTime": "18:00:00"
+}
+```
+
+Os horarios disponiveis sao calculados em blocos de 30 minutos.
 
 ## Comandos principais
 
@@ -112,3 +126,5 @@ http://localhost:8080/hello
 - Primeiras tabelas modeladas com JPA
 - Regra inicial de criacao de agendamento implementada
 - Endpoints iniciais de cliente, barbeiro e agendamento criados
+- Disponibilidade por barbeiro criada
+- Listagem de horarios disponiveis em blocos de 30 minutos criada
