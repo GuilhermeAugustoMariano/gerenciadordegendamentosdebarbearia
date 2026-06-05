@@ -85,6 +85,8 @@ Exemplo de cadastro de disponibilidade:
 
 Os horarios disponiveis sao calculados em blocos de 30 minutos.
 
+Ao cancelar um agendamento, ele nao e apagado: o status muda de `SCHEDULED` para `CANCELED`.
+
 ## Comandos principais
 
 Todos os comandos Maven devem ser executados na raiz do projeto.
@@ -128,3 +130,4 @@ http://localhost:8080/hello
 - Endpoints iniciais de cliente, barbeiro e agendamento criados
 - Disponibilidade por barbeiro criada
 - Listagem de horarios disponiveis em blocos de 30 minutos criada
+- Cancelamento logico de agendamento criado

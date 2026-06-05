@@ -46,6 +46,10 @@ public class Appointment {
         this.status = AppointmentStatus.SCHEDULED;
     }
 
+    public void cancel() {
+        this.status = AppointmentStatus.CANCELED;
+    }
+
     public Long getId() {
         return id;
     }

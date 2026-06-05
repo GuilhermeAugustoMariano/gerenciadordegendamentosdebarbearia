@@ -58,4 +58,14 @@ public class AppointmentService {
 
         return appointmentRepository.save(appointment);
     }
+
+    @Transactional
+    public Appointment cancelAppointment(Long appointmentId) {
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElseThrow(() -> new IllegalArgumentException("Agendamento nao encontrado."));
+
+        appointment.cancel();
+
+        return appointment;
+    }
 }

@@ -69,4 +69,20 @@ class AppointmentServiceTest {
         )).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Barbeiro ja possui agendamento neste horario.");
     }
+
+    @Test
+    void shouldCancelAppointment() {
+        Customer customer = customerRepository.save(new Customer("Ana", "11999999999"));
+        Barber barber = barberRepository.save(new Barber("Carlos"));
+        Appointment appointment = appointmentService.createAppointment(
+                customer.getId(),
+                barber.getId(),
+                LocalDate.of(2026, 6, 5),
+                LocalTime.of(14, 0)
+        );
+
+        Appointment canceledAppointment = appointmentService.cancelAppointment(appointment.getId());
+
+        assertThat(canceledAppointment.getStatus()).isEqualTo(AppointmentStatus.CANCELED);
+    }
 }
