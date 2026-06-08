@@ -1,0 +1,174 @@
+﻿<mat-toolbar class="app-toolbar">
+  <span>Gerenciador de Agendamentos de Barbearia</span>
+</mat-toolbar>
+
+<main class="page-shell">
+  <section class="panel-grid" aria-label="Cadastros e agendamentos">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Clientes</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="form-grid" [formGroup]="customerForm" (ngSubmit)="createCustomer()">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" autocomplete="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phone" autocomplete="tel" />
+          </mat-form-field>
+
+          <button mat-flat-button type="submit">Cadastrar cliente</button>
+        </form>
+
+        <mat-list class="compact-list">
+          @for (customer of customers(); track customer.id) {
+            <mat-list-item>{{ customer.name }} | {{ customer.phone }}</mat-list-item>
+          } @empty {
+            <mat-list-item>Nenhum cliente cadastrado nesta sessao.</mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Barbeiros</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="form-grid" [formGroup]="barberForm" (ngSubmit)="createBarber()">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" autocomplete="off" />
+          </mat-form-field>
+
+          <button mat-flat-button type="submit">Cadastrar barbeiro</button>
+        </form>
+
+        <mat-list class="compact-list">
+          @for (barber of barbers(); track barber.id) {
+            <mat-list-item>{{ barber.name }}</mat-list-item>
+          } @empty {
+            <mat-list-item>Nenhum barbeiro cadastrado nesta sessao.</mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Disponibilidade</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="form-grid" [formGroup]="availabilityForm" (ngSubmit)="createAvailability()">
+          <mat-form-field appearance="outline">
+            <mat-label>Barbeiro</mat-label>
+            <mat-select formControlName="barberId">
+              @for (barber of barbers(); track barber.id) {
+                <mat-option [value]="barber.id">{{ barber.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Dia da semana</mat-label>
+            <mat-select formControlName="dayOfWeek">
+              @for (day of weekDays; track day.value) {
+                <mat-option [value]="day.value">{{ day.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <div class="time-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Inicio</mat-label>
+              <input matInput type="time" formControlName="startTime" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Fim</mat-label>
+              <input matInput type="time" formControlName="endTime" />
+            </mat-form-field>
+          </div>
+
+          <button mat-flat-button type="submit">Cadastrar disponibilidade</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Novo agendamento</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="form-grid" [formGroup]="appointmentForm" (ngSubmit)="createAppointment()">
+          <mat-form-field appearance="outline">
+            <mat-label>Cliente</mat-label>
+            <mat-select formControlName="customerId">
+              @for (customer of customers(); track customer.id) {
+                <mat-option [value]="customer.id">{{ customer.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Barbeiro</mat-label>
+            <mat-select formControlName="barberId">
+              @for (barber of barbers(); track barber.id) {
+                <mat-option [value]="barber.id">{{ barber.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data</mat-label>
+            <input matInput type="date" formControlName="appointmentDate" />
+          </mat-form-field>
+
+          <button mat-stroked-button type="button" (click)="findAvailableTimes()">Buscar horarios</button>
+
+          <div class="available-times" aria-label="Horarios disponiveis">
+            @for (time of availableTimes(); track time) {
+              <button mat-stroked-button type="button" (click)="selectAvailableTime(time)">{{ time }}</button>
+            } @empty {
+              <span class="muted-text">Nenhum horario carregado.</span>
+            }
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Horario escolhido</mat-label>
+            <input matInput type="time" formControlName="appointmentTime" />
+          </mat-form-field>
+
+          <button mat-flat-button type="submit">Criar agendamento</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section class="appointments-section" aria-label="Agendamentos criados">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Agendamentos da sessao</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list class="appointment-list">
+          @for (appointment of appointments(); track appointment.id) {
+            <mat-list-item>
+              <span class="appointment-line">
+                #{{ appointment.id }} | Cliente {{ appointment.customerId }} | Barbeiro {{ appointment.barberId }} | {{ appointment.appointmentDate }} {{ appointment.appointmentTime }} | {{ appointment.status }}
+              </span>
+              @if (appointment.status === 'SCHEDULED') {
+                <button mat-stroked-button type="button" (click)="cancelAppointment(appointment.id)">Cancelar</button>
+              }
+            </mat-list-item>
+          } @empty {
+            <mat-list-item>Nenhum agendamento criado nesta sessao.</mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</main>
