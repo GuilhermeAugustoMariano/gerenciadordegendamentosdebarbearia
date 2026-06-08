@@ -85,7 +85,9 @@ Exemplo de cadastro de disponibilidade:
 
 Os horarios disponiveis sao calculados em blocos de 30 minutos.
 
-Ao cancelar um agendamento, ele nao e apagado: o status muda de `SCHEDULED` para `CANCELED`.
+Ao cancelar um agendamento, ele nao e apagado: o status muda de `SCHEDULED` para CANCELED.
+
+Erros de regra de negocio retornam HTTP 400 com uma mensagem em JSON.
 
 ## Comandos principais
 
@@ -131,3 +133,4 @@ http://localhost:8080/hello
 - Disponibilidade por barbeiro criada
 - Listagem de horarios disponiveis em blocos de 30 minutos criada
 - Cancelamento logico de agendamento criado
+- Tratamento basico de erros da API criado
