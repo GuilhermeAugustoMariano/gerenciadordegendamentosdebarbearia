@@ -125,6 +125,14 @@ Guia pratico do fluxo de criacao de agendamento:
 ```text
 docs/debug.md
 ```
+
+## Deploy
+
+Guia de publicacao em Render, Supabase e Netlify:
+
+```text
+docs/deploy.md
+```
 ## Status atual
 
 - Java 21 configurado
@@ -142,3 +150,6 @@ docs/debug.md
 - Listagem de horarios disponiveis em blocos de 30 minutos criada
 - Cancelamento logico de agendamento criado
 - Tratamento basico de erros da API criado
+- Logs basicos da API criados
+- Guia de debug criado
+- Preparacao de deploy criada
