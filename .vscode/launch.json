@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug Backend Spring Boot",
+      "request": "launch",
+      "mainClass": "com.guilhermeaugusto.gerenciadordegendamentosdebarbearia.GerenciadordegendamentosdebarbeariaApplication",
+      "projectName": "gerenciadordegendamentosdebarbearia",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    }
+  ]
+}

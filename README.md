@@ -117,6 +117,14 @@ Depois de iniciar a API, acesse:
 http://localhost:8080/hello
 ```
 
+
+## Debug
+
+Guia pratico do fluxo de criacao de agendamento:
+
+```text
+docs/debug.md
+```
 ## Status atual
 
 - Java 21 configurado
