@@ -29,7 +29,7 @@ jobs:
         run: chmod +x ./mvnw
 
       - name: Run backend tests and coverage
-        run: ./mvnw clean verify
+        run: bash ./mvnw clean verify
 
   frontend:
     name: Frontend build and tests
