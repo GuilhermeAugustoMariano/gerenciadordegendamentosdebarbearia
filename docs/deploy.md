@@ -125,3 +125,30 @@ Frontend no Netlify:
 ```text
 BARBEARIA_API_URL
 ```
+## 7. Erro de Dialect ou conexao com o banco
+
+Se o Render mostrar uma mensagem parecida com:
+
+```text
+Unable to determine Dialect without JDBC metadata
+```
+
+verifique primeiro se as variaveis de ambiente do backend foram cadastradas exatamente com estes nomes:
+
+```text
+SPRING_PROFILES_ACTIVE
+SPRING_DATASOURCE_URL
+SPRING_DATASOURCE_USERNAME
+SPRING_DATASOURCE_PASSWORD
+APP_CORS_ALLOWED_ORIGINS
+```
+
+Para este projeto Supabase, a URL deve ficar neste formato:
+
+```text
+jdbc:postgresql://db.zbjucuzwmfqiuiifhywi.supabase.co:5432/postgres?sslmode=require
+```
+
+Nao inclua a senha dentro da URL. A senha deve ficar somente em `SPRING_DATASOURCE_PASSWORD`.
+
+Se ainda falhar conexao usando o host direto `db...supabase.co`, procure no Supabase a connection string do pooler e monte a URL JDBC com aquele host. Alguns provedores de hospedagem se conectam melhor pelo pooler do Supabase.
