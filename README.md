@@ -2,7 +2,31 @@
 
 Sistema full stack para gerenciar agendamentos de uma barbearia.
 
-O projeto foi construido como estudo guiado, do zero ao deploy, usando Java Spring Boot no backend e Angular no frontend.
+O projeto foi construido como estudo guiado, do zero ao deploy, usando Java Spring Boot no backend, Angular no frontend e PostgreSQL em producao.
+
+## Projeto em producao
+
+Frontend:
+
+```text
+https://iridescent-panda-47cb0b.netlify.app
+```
+
+Backend:
+
+```text
+https://barbearia-backend-111u.onrender.com/hello
+```
+
+Arquitetura em producao:
+
+```text
+Netlify -> Render -> Supabase
+```
+
+- Netlify hospeda a tela Angular.
+- Render hospeda a API Spring Boot.
+- Supabase hospeda o banco PostgreSQL.
 
 ## Funcionalidades
 
@@ -39,12 +63,13 @@ Angular Material
 TypeScript
 ```
 
-Deploy planejado:
+Deploy:
 
 ```text
 Render: backend
 Supabase: banco PostgreSQL
 Netlify: frontend
+GitHub Actions: CI com testes e build
 ```
 
 ## Estrutura do projeto
@@ -72,6 +97,12 @@ appointments              agendamentos
 ```
 
 A tabela `appointments` se conecta com `customers` e `barbers`.
+
+Regra principal:
+
+```text
+Um barbeiro nao pode ter dois agendamentos ativos no mesmo dia e horario.
+```
 
 ## Endpoints principais
 
@@ -207,12 +238,14 @@ Frontend em producao:
 BARBEARIA_API_URL=https://seu-backend.onrender.com
 ```
 
-Arquivos de exemplo:
+Variaveis usadas neste deploy:
 
 ```text
-backend/.env.example
-frontend/.env.example
+APP_CORS_ALLOWED_ORIGINS=https://iridescent-panda-47cb0b.netlify.app
+BARBEARIA_API_URL=https://barbearia-backend-111u.onrender.com
 ```
+
+Nunca salve senha real de banco em arquivos versionados no Git.
 
 ## Debug
 
@@ -230,6 +263,12 @@ Guia de publicacao em Render, Supabase e Netlify:
 docs/deploy.md
 ```
 
+Observacao sobre o plano gratuito do Render:
+
+```text
+A primeira chamada pode demorar porque o servidor pode dormir quando fica sem uso.
+```
+
 ## Qualidade aplicada
 
 - Separacao por camadas: controller, service, repository, model e dto.
@@ -239,7 +278,19 @@ docs/deploy.md
 - Cobertura minima com JaCoCo.
 - Logs em pontos importantes do fluxo.
 - Configuracao separada para desenvolvimento e producao.
+- CI no GitHub Actions para backend e frontend.
 
 ## Status
 
-Projeto preparado para deploy manual em Render, Supabase e Netlify.
+Projeto publicado e validado em producao.
+
+Fluxo validado:
+
+```text
+Cadastrar cliente
+Cadastrar barbeiro
+Cadastrar disponibilidade
+Buscar horarios disponiveis
+Criar agendamento
+Bloquear segundo agendamento no mesmo horario
+```
