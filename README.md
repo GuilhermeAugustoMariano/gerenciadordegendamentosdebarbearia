@@ -2,9 +2,9 @@
 
 Sistema full stack para gerenciar agendamentos de uma barbearia.
 
-O projeto foi construido como estudo guiado, do zero ao deploy, usando Java Spring Boot no backend, Angular no frontend e PostgreSQL em producao.
+O projeto foi construido como estudo guiado, do zero ao deploy, usando Java Spring Boot no backend, Angular no frontend e PostgreSQL em produção.
 
-## Projeto em producao
+## Projeto em produção
 
 Frontend:
 
@@ -18,7 +18,7 @@ Backend:
 https://barbearia-backend-111u.onrender.com/hello
 ```
 
-Arquitetura em producao:
+Arquitetura em produção:
 
 ```text
 Netlify -> Render -> Supabase
@@ -116,7 +116,7 @@ POST /barbers/{barberId}/availabilities
 GET /barbers/{barberId}/available-times?date=2026-06-05
 ```
 
-Exemplo de criacao de agendamento:
+Exemplo de criação de agendamento:
 
 ```json
 {
@@ -175,7 +175,7 @@ Entre na pasta `frontend`:
 cd frontend
 ```
 
-Instale as dependencias:
+Instale as dependências:
 
 ```text
 npm.cmd install
@@ -201,7 +201,7 @@ Backend:
 cmd /c mvnw.cmd clean verify
 ```
 
-O JaCoCo gera o relatorio em:
+O JaCoCo gera o relatório em:
 
 ```text
 backend/target/site/jacoco/index.html
@@ -220,9 +220,9 @@ cd frontend
 npm.cmd test -- --watch=false
 ```
 
-## Variaveis de ambiente
+## Variáveis de ambiente
 
-Backend em producao:
+Backend em produção:
 
 ```text
 SPRING_PROFILES_ACTIVE=prod
@@ -232,24 +232,22 @@ SPRING_DATASOURCE_PASSWORD=senha
 APP_CORS_ALLOWED_ORIGINS=https://seu-site.netlify.app
 ```
 
-Frontend em producao:
+Frontend em produção:
 
 ```text
 BARBEARIA_API_URL=https://seu-backend.onrender.com
 ```
 
-Variaveis usadas neste deploy:
+Variáveis usadas neste deploy:
 
 ```text
 APP_CORS_ALLOWED_ORIGINS=https://iridescent-panda-47cb0b.netlify.app
 BARBEARIA_API_URL=https://barbearia-backend-111u.onrender.com
 ```
 
-Nunca salve senha real de banco em arquivos versionados no Git.
-
 ## Debug
 
-Guia pratico do fluxo de criacao de agendamento:
+Guia prático do fluxo de criação de agendamento:
 
 ```text
 docs/debug.md
@@ -257,13 +255,13 @@ docs/debug.md
 
 ## Deploy
 
-Guia de publicacao em Render, Supabase e Netlify:
+Guia de publicação em Render, Supabase e Netlify:
 
 ```text
 docs/deploy.md
 ```
 
-Observacao sobre o plano gratuito do Render:
+Observação sobre o plano gratuito do Render:
 
 ```text
 A primeira chamada pode demorar porque o servidor pode dormir quando fica sem uso.
@@ -271,18 +269,18 @@ A primeira chamada pode demorar porque o servidor pode dormir quando fica sem us
 
 ## Qualidade aplicada
 
-- Separacao por camadas: controller, service, repository, model e dto.
+- Separação por camadas: controller, service, repository, model e dto.
 - DTOs para entrada e saida da API.
-- Regra de negocio centralizada no service.
+- Regra de negócio centralizada no service.
 - Testes automatizados para regras principais.
-- Cobertura minima com JaCoCo.
+- Cobertura mínima com JaCoCo.
 - Logs em pontos importantes do fluxo.
-- Configuracao separada para desenvolvimento e producao.
+- Configuração separada para desenvolvimento e produção.
 - CI no GitHub Actions para backend e frontend.
 
 ## Status
 
-Projeto publicado e validado em producao.
+Projeto publicado e validado em produção.
 
 Fluxo validado:
 
